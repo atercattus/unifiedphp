@@ -8,6 +8,6 @@ before_script:
     - phpize
     - ./configure
     - make
-    - #echo "extension = unifiedphp.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - echo -e "\nru_RU.CP1251 CP1251" | sudo tee -a /var/lib/locales/supported.d/ru; sudo locale-gen
 
 script: echo 'n'|make test
