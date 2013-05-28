@@ -3,8 +3,9 @@
 *~
 Makefile*
 config.*
-configure*
 *.m4
+!config.m4
+configure*
 *.la
 *.lo
 autom4te.cache/
