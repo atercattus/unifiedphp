@@ -9,6 +9,7 @@
 /* {{{ Block for PHP_FUNCTION proto's
 */
 #define UNIFIEDPHP_ARR_PROTO        \
+    PHP_FUNCTION(each);             \
     PHP_FUNCTION(map);              \
     PHP_FUNCTION(filter);           \
     PHP_FUNCTION(reduce);           \
@@ -18,6 +19,7 @@
 /* {{{ Block for const zend_function_entry unifiedphp_functions[]
 */
 #define UNIFIEDPHP_ARR_FUNCTION_ENTRY                               \
+    ZEND_NS_FE(UNIFIEDPHP_NS_ARR, each, NULL)                       \
     ZEND_NS_FE(UNIFIEDPHP_NS_ARR, map, NULL)                        \
     ZEND_NS_FE(UNIFIEDPHP_NS_ARR, filter, NULL)                     \
     ZEND_NS_FE(UNIFIEDPHP_NS_ARR, reduce, NULL)                     \
