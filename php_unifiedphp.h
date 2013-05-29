@@ -7,6 +7,10 @@
     #define ZEND_FE_END     { NULL, NULL, NULL, 0, 0 }
 #endif
 
+#ifndef ENT_HTML401
+    #define ENT_HTML401     0
+#endif
+
 #define UNIFIEDPHP_STR_DEFINE(p)        char *p=NULL; int p##_len=0;
 #define UNIFIEDPHP_STR_PARAM(p)         char *p, int p##_len
 #define UNIFIEDPHP_STR_CALL(p)          p, p##_len
