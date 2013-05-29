@@ -182,7 +182,11 @@ PHP_FUNCTION(htmlSpecialCharsDecode)
     UNIFIEDPHP_STR_DEFINE(str)
     long quote_style = ENT_COMPAT|ENT_HTML401;
     UNIFIEDPHP_STR_DEFINE(encoding)
+#if PHP_VERSION_ID<50400
+    int new_len = 0;
+#else
     size_t new_len = 0;
+#endif
     char *replaced;
 
     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|ls", UNIFIEDPHP_STR_CALLP(str), &quote_style, UNIFIEDPHP_STR_CALLP(encoding)) == FAILURE) {
