@@ -4,7 +4,7 @@
 #include "php.h"
 
 #ifndef ZEND_FE_END
-    #define ZEND_FE_END            { NULL, NULL, NULL, 0, 0 }
+    #define ZEND_FE_END     { NULL, NULL, NULL, 0, 0 }
 #endif
 
 #define UNIFIEDPHP_STR_DEFINE(p)        char *p; int p##_len;
