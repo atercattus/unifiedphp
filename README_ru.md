@@ -134,7 +134,7 @@ Arr\filter(Arr\range(20), function($i){return $i%2;});
 | HTML | |
 | string **Str\htmlStripTags**(string $string[, string $allowable_tags]) | [strip_tags](http://php.net/manual/en/function.strip-tags.php) |
 | string **Str\htmlSpecialCharsEncode**(string $string[, int $flags=ENT_COMPAT&#124;ENT_HTML401[, string $encoding='UTF-8'[, bool $double_encode=true]]]) | [htmlspecialchars](http://php.net/manual/en/function.htmlspecialchars.php) |
-| string **Str\htmlSpecialCharsDecode**(string $string[, int $flags=ENT_COMPAT&#124;ENT_HTML401]) | [htmlspecialchars_decode](http://php.net/manual/en/function.htmlspecialchars-decode.php) |
+| string **Str\htmlSpecialCharsDecode**(string $string[, int $flags=ENT_COMPAT&#124;ENT_HTML401[, string $encoding='UTF-8']]) | [htmlspecialchars_decode](http://php.net/manual/en/function.htmlspecialchars-decode.php) |
 | string **Str\htmlEntitiesEncode**(string $string[, int $flags=ENT_COMPAT&#124;ENT_HTML401[, string $encoding='UTF-8'[, bool $double_encode=true]]]) | [htmlentities](http://php.net/manual/en/function.htmlentities.php) |
 | string **Str\htmlEntitiesDecode**(string $string[, int $flags=ENT_COMPAT&#124;ENT_HTML401[, string $encoding='UTF-8']]) | [html_entity_decode](http://php.net/manual/en/function.html-entity-decode.php) |
 | Работа с URL | |

@@ -1,3 +1,7 @@
+#include "ext/standard/crc32.h"
+#include "ext/standard/basic_functions.h"
+#include "ext/standard/html.h"
+
 /* {{{ proto bool startsWith(string $haystack, string $prefix)
  */
 PHP_FUNCTION(startsWith)
@@ -120,20 +124,20 @@ static char *_unifiedphp_hex2bin(const unsigned char *old, const size_t oldlen, 
 */
 PHP_FUNCTION(hexToBin)
 {
-    char *result, *data;
+    UNIFIEDPHP_STR_DEFINE(str)
+    char *result;
     size_t newlen;
-    int datalen;
 
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &data, &datalen) == FAILURE) {
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", UNIFIEDPHP_STR_CALLP(str)) == FAILURE) {
         return;
     }
 
-    if (datalen % 2 != 0) {
+    if (str_len % 2 != 0) {
         php_error_docref(NULL TSRMLS_CC, E_WARNING, "Hexadecimal input string must have an even length");
         RETURN_FALSE;
     }
 
-    result = _unifiedphp_hex2bin((unsigned char *)data, datalen, &newlen);
+    result = _unifiedphp_hex2bin((unsigned char *)str, str_len, &newlen);
 
     if (!result) {
         RETURN_FALSE;
@@ -141,4 +145,54 @@ PHP_FUNCTION(hexToBin)
 
     RETURN_STRINGL(result, newlen, 0);
 }
+/* }}} */
 #endif // PHP_VERSION_ID<50400
+
+/* {{{ proto string crc32(string $data)
+   Calculates the crc32 polynomial of a string
+   PHP_5_5/ext/standard/crc32.c
+*/
+PHP_FUNCTION(crc32)
+{
+    UNIFIEDPHP_STR_DEFINE(s)
+    php_uint32 crcinit = 0;
+    register php_uint32 crc;
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", UNIFIEDPHP_STR_CALLP(s)) == FAILURE) {
+        return;
+    }
+
+    crc = crcinit^0xFFFFFFFF;
+
+    for (; s_len--; ++s) {
+        crc = ((crc >> 8) & 0x00FFFFFF) ^ crc32tab[(crc ^ (*s)) & 0xFF];
+    }
+
+    char *buf = emalloc(12);
+    sprintf(buf, "%u", (crc^0xFFFFFFFF));
+    RETURN_STRING(buf, 0);
+}
+/* }}} */
+
+/* {{{ proto string htmlSpecialCharsDecode(string $string[, int $flags = ENT_COMPAT|ENT_HTML401[, string $encoding = 'UTF-8']])
+   Convert special HTML entities back to characters
+*/
+PHP_FUNCTION(htmlSpecialCharsDecode)
+{
+    UNIFIEDPHP_STR_DEFINE(str)
+    long quote_style = ENT_COMPAT|ENT_HTML401;
+    UNIFIEDPHP_STR_DEFINE(encoding)
+    size_t new_len = 0;
+    char *replaced;
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|ls", UNIFIEDPHP_STR_CALLP(str), &quote_style, UNIFIEDPHP_STR_CALLP(encoding)) == FAILURE) {
+        return;
+    }
+
+    replaced = php_unescape_html_entities(UNIFIEDPHP_STR_CALL(str), &new_len, 0 /*!all*/, quote_style, encoding TSRMLS_CC);
+    if (replaced) {
+        RETURN_STRINGL(replaced, (int)new_len, 0);
+    }
+    RETURN_FALSE;
+}
+/* }}} */

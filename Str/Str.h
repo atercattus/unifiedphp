@@ -14,35 +14,37 @@
     #define UNIFIEDPHP_STR_PROTO_HEXTOBIN
 #endif
 
-#define UNIFIEDPHP_STR_PROTO        \
-    PHP_FUNCTION(cmp);              \
-    PHP_FUNCTION(cmpNat);           \
-    PHP_FUNCTION(cmpNatN);          \
-    PHP_FUNCTION(cmpNatNCase);      \
-                                    \
-    PHP_FUNCTION(padL);             \
-    PHP_FUNCTION(padR);             \
-                                    \
-    PHP_FUNCTION(pos);              \
-    PHP_FUNCTION(posCase);          \
-    PHP_FUNCTION(posLast);          \
-    PHP_FUNCTION(posLastCase);      \
-                                    \
-    PHP_FUNCTION(find);             \
-    PHP_FUNCTION(findCase);         \
-    PHP_FUNCTION(findLast);         \
-    PHP_FUNCTION(findLastCase);     \
-                                    \
-    PHP_FUNCTION(replace);          \
-    PHP_FUNCTION(replaceCase);      \
-                                    \
-    PHP_FUNCTION(startsWith);       \
-    PHP_FUNCTION(endsWith);         \
-                                    \
-    PHP_FUNCTION(formatMoney);      \
-    PHP_FUNCTION(split);            \
-                                    \
-    UNIFIEDPHP_STR_PROTO_HEXTOBIN   \
+#define UNIFIEDPHP_STR_PROTO                \
+    PHP_FUNCTION(cmp);                      \
+    PHP_FUNCTION(cmpNat);                   \
+    PHP_FUNCTION(cmpNatN);                  \
+    PHP_FUNCTION(cmpNatNCase);              \
+                                            \
+    PHP_FUNCTION(padL);                     \
+    PHP_FUNCTION(padR);                     \
+                                            \
+    PHP_FUNCTION(pos);                      \
+    PHP_FUNCTION(posCase);                  \
+    PHP_FUNCTION(posLast);                  \
+    PHP_FUNCTION(posLastCase);              \
+                                            \
+    PHP_FUNCTION(find);                     \
+    PHP_FUNCTION(findCase);                 \
+    PHP_FUNCTION(findLast);                 \
+    PHP_FUNCTION(findLastCase);             \
+                                            \
+    PHP_FUNCTION(replace);                  \
+    PHP_FUNCTION(replaceCase);              \
+                                            \
+    PHP_FUNCTION(startsWith);               \
+    PHP_FUNCTION(endsWith);                 \
+                                            \
+    PHP_FUNCTION(formatMoney);              \
+    PHP_FUNCTION(split);                    \
+    PHP_FUNCTION(crc32);                    \
+    PHP_FUNCTION(htmlSpecialCharsDecode);   \
+                                            \
+    UNIFIEDPHP_STR_PROTO_HEXTOBIN           \
 // #define UNIFIEDPHP_STR_PROTO
 /* }}} */
 
@@ -81,6 +83,8 @@
                                                                     \
     ZEND_NS_FE(UNIFIEDPHP_NS_STR, formatMoney, NULL)                \
     ZEND_NS_FE(UNIFIEDPHP_NS_STR, split, NULL)                      \
+    ZEND_NS_FE(UNIFIEDPHP_NS_STR, crc32, NULL)                      \
+    ZEND_NS_FE(UNIFIEDPHP_NS_STR, htmlSpecialCharsDecode, NULL)     \
                                                                     \
     UNIFIEDPHP_STR_FUNCTION_ENTRY_HEXTOBIN                          \
 // #define UNIFIEDPHP_STR_FUNCTION_ENTRY
@@ -145,7 +149,7 @@
                                                                                 \
     /* hashing & crypting */                                                    \
     UNIFIEDPHP_FALIAS_STR("rot13", "str_rot13");                                \
-    UNIFIEDPHP_FALIAS_STR("crc32", "crc32");                                    \
+    /* PHP_FUNCTION(crc32); */                                                  \
     UNIFIEDPHP_FALIAS_STR("md5", "md5");                                        \
     UNIFIEDPHP_FALIAS_STR("md5File", "md5_file");                               \
     UNIFIEDPHP_FALIAS_STR("sha1", "sha1");                                      \
@@ -176,7 +180,7 @@
     /* html */                                                                  \
     UNIFIEDPHP_FALIAS_STR("htmlStripTags", "strip_tags");                       \
     UNIFIEDPHP_FALIAS_STR("htmlSpecialCharsEncode", "htmlspecialchars");        \
-    UNIFIEDPHP_FALIAS_STR("htmlSpecialCharsDecode", "htmlspecialchars_decode"); \
+    /* PHP_FUNCTION(htmlSpecialCharsDecode); */                                 \
     UNIFIEDPHP_FALIAS_STR("htmlEntitiesEncode", "htmlentities");                \
     UNIFIEDPHP_FALIAS_STR("htmlEntitiesDecode", "html_entity_decode");          \
                                                                                 \
