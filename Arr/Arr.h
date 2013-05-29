@@ -11,6 +11,7 @@
 #define UNIFIEDPHP_ARR_PROTO        \
     PHP_FUNCTION(map);              \
     PHP_FUNCTION(filter);           \
+    PHP_FUNCTION(reduce);           \
 // #define UNIFIEDPHP_ARR_PROTO
 /* }}} */
 
@@ -19,6 +20,7 @@
 #define UNIFIEDPHP_ARR_FUNCTION_ENTRY                               \
     ZEND_NS_FE(UNIFIEDPHP_NS_ARR, map, NULL)                        \
     ZEND_NS_FE(UNIFIEDPHP_NS_ARR, filter, NULL)                     \
+    ZEND_NS_FE(UNIFIEDPHP_NS_ARR, reduce, NULL)                     \
 // #define UNIFIEDPHP_ARR_FUNCTION_ENTRY
 /* }}} */
 
